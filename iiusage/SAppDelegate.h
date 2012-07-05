@@ -8,8 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SAppDelegate : UIResponder <UIApplicationDelegate>
+@class RootViewController;
 
-@property (strong, nonatomic) UIWindow *window;
+@interface SAppDelegate : UIResponder <UIApplicationDelegate> {
+}
+
+@property (strong, nonatomic) IBOutlet UIWindow *window;
+@property (strong, nonatomic) IBOutlet UINavigationController *navigation_controller;
+@property (strong, nonatomic) IBOutlet RootViewController *root_view_controller;
 
 @end

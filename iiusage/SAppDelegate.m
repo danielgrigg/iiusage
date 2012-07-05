@@ -7,17 +7,20 @@
 //
 
 #import "SAppDelegate.h"
+#import "RootViewController.h"
 
 @implementation SAppDelegate
 
 @synthesize window = _window;
+@synthesize root_view_controller = _root_view_controller;
+@synthesize navigation_controller = _navigation_controller;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
+    [self.window addSubview:self.navigation_controller.view];
+//  self.window.rootViewController= self.navigation_controller;  
+//  [self.window makeKeyAndVisible];
+
     return YES;
 }
 
