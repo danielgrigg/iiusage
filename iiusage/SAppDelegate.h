@@ -17,4 +17,6 @@
 @property (strong, nonatomic) IBOutlet UINavigationController *navigation_controller;
 @property (strong, nonatomic) IBOutlet RootViewController *root_view_controller;
 
+@property (strong, nonatomic) NSString* username;
+@property (strong, nonatomic) NSString* password;
 @end

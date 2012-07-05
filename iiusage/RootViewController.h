@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RootViewController : UIViewController
+@interface RootViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 - (IBAction)show_settings:(id)sender;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem* ui_settings;
-
+@property (nonatomic, retain) IBOutlet UITableView* ui_usage;
 @end

@@ -22,6 +22,12 @@
 		65E6B7B615A532D700BEB0B1 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E6B7B415A532D700BEB0B1 /* RootViewController.m */; };
 		65E6B7B715A532D700BEB0B1 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65E6B7B515A532D700BEB0B1 /* RootViewController.xib */; };
 		65E6B7C115A5457700BEB0B1 /* gearb40.png in Resources */ = {isa = PBXBuildFile; fileRef = 65E6B7C015A5457700BEB0B1 /* gearb40.png */; };
+		65E6B7C515A548E200BEB0B1 /* SSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E6B7C315A548E200BEB0B1 /* SSettingsViewController.m */; };
+		65E6B7C915A558FA00BEB0B1 /* SEditableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E6B7C815A558FA00BEB0B1 /* SEditableCell.m */; };
+		65E6B7CB15A55A7D00BEB0B1 /* SEditableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65E6B7CA15A55A7C00BEB0B1 /* SEditableCell.xib */; };
+		65E6B7D215A566F800BEB0B1 /* SPasswordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E6B7D115A566F800BEB0B1 /* SPasswordCell.m */; };
+		65E6B7D415A5679800BEB0B1 /* SPasswordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65E6B7D315A5679800BEB0B1 /* SPasswordCell.xib */; };
+		65E6B7D615A5723A00BEB0B1 /* Settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 65E6B7D515A5723A00BEB0B1 /* Settings.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +62,15 @@
 		65E6B7B415A532D700BEB0B1 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		65E6B7B515A532D700BEB0B1 /* RootViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RootViewController.xib; path = iiusage/RootViewController.xib; sourceTree = "<group>"; };
 		65E6B7C015A5457700BEB0B1 /* gearb40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gearb40.png; sourceTree = "<group>"; };
+		65E6B7C215A548E200BEB0B1 /* SSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSettingsViewController.h; sourceTree = "<group>"; };
+		65E6B7C315A548E200BEB0B1 /* SSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSettingsViewController.m; sourceTree = "<group>"; };
+		65E6B7C715A558F900BEB0B1 /* SEditableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEditableCell.h; sourceTree = "<group>"; };
+		65E6B7C815A558FA00BEB0B1 /* SEditableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEditableCell.m; sourceTree = "<group>"; };
+		65E6B7CA15A55A7C00BEB0B1 /* SEditableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SEditableCell.xib; sourceTree = "<group>"; };
+		65E6B7D015A566F800BEB0B1 /* SPasswordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPasswordCell.h; sourceTree = "<group>"; };
+		65E6B7D115A566F800BEB0B1 /* SPasswordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPasswordCell.m; sourceTree = "<group>"; };
+		65E6B7D315A5679800BEB0B1 /* SPasswordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPasswordCell.xib; sourceTree = "<group>"; };
+		65E6B7D515A5723A00BEB0B1 /* Settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Settings.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,7 +100,6 @@
 		65E6B76015A52B9400BEB0B1 = {
 			isa = PBXGroup;
 			children = (
-				65E6B7C015A5457700BEB0B1 /* gearb40.png */,
 				65E6B7A715A5308A00BEB0B1 /* resources */,
 				65E6B77515A52B9400BEB0B1 /* iiusage */,
 				65E6B78D15A52B9400BEB0B1 /* iiusageTests */,
@@ -117,11 +131,17 @@
 		65E6B77515A52B9400BEB0B1 /* iiusage */ = {
 			isa = PBXGroup;
 			children = (
+				65E6B7C215A548E200BEB0B1 /* SSettingsViewController.h */,
+				65E6B7C315A548E200BEB0B1 /* SSettingsViewController.m */,
 				65E6B7B315A532D700BEB0B1 /* RootViewController.h */,
 				65E6B7B415A532D700BEB0B1 /* RootViewController.m */,
 				65E6B77E15A52B9400BEB0B1 /* SAppDelegate.h */,
 				65E6B77F15A52B9400BEB0B1 /* SAppDelegate.m */,
 				65E6B77615A52B9400BEB0B1 /* Supporting Files */,
+				65E6B7C715A558F900BEB0B1 /* SEditableCell.h */,
+				65E6B7C815A558FA00BEB0B1 /* SEditableCell.m */,
+				65E6B7D015A566F800BEB0B1 /* SPasswordCell.h */,
+				65E6B7D115A566F800BEB0B1 /* SPasswordCell.m */,
 			);
 			path = iiusage;
 			sourceTree = "<group>";
@@ -159,8 +179,12 @@
 		65E6B7A715A5308A00BEB0B1 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				65E6B7C015A5457700BEB0B1 /* gearb40.png */,
 				65E6B7B515A532D700BEB0B1 /* RootViewController.xib */,
 				65E6B7A815A5323800BEB0B1 /* MainWindow.xib */,
+				65E6B7CA15A55A7C00BEB0B1 /* SEditableCell.xib */,
+				65E6B7D315A5679800BEB0B1 /* SPasswordCell.xib */,
+				65E6B7D515A5723A00BEB0B1 /* Settings.plist */,
 			);
 			name = resources;
 			sourceTree = "<group>";
@@ -241,6 +265,9 @@
 				65E6B7A915A5323800BEB0B1 /* MainWindow.xib in Resources */,
 				65E6B7B715A532D700BEB0B1 /* RootViewController.xib in Resources */,
 				65E6B7C115A5457700BEB0B1 /* gearb40.png in Resources */,
+				65E6B7CB15A55A7D00BEB0B1 /* SEditableCell.xib in Resources */,
+				65E6B7D415A5679800BEB0B1 /* SPasswordCell.xib in Resources */,
+				65E6B7D615A5723A00BEB0B1 /* Settings.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +305,9 @@
 				65E6B77C15A52B9400BEB0B1 /* main.m in Sources */,
 				65E6B78015A52B9400BEB0B1 /* SAppDelegate.m in Sources */,
 				65E6B7B615A532D700BEB0B1 /* RootViewController.m in Sources */,
+				65E6B7C515A548E200BEB0B1 /* SSettingsViewController.m in Sources */,
+				65E6B7C915A558FA00BEB0B1 /* SEditableCell.m in Sources */,
+				65E6B7D215A566F800BEB0B1 /* SPasswordCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
