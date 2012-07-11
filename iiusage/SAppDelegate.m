@@ -125,12 +125,9 @@
   {
     [_root_view_controller show_settings:nil];
   }
-#ifdef REFRESH_STARTUP
   else {
     [self refresh_usage];
-
   }  
-#endif
   return YES;
 }
 
