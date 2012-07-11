@@ -9,8 +9,14 @@
 #import <UIKit/UIKit.h>
 
 @class RootViewController;
+@class SUsage;
 
 @interface SAppDelegate : UIResponder <UIApplicationDelegate> {
+  @private
+  NSURLConnection *toolbox_connection;  
+  NSMutableData* usage_data;
+  NSOperationQueue* parse_queue;
+  SUsage* usage;
 }
 
 @property (strong, nonatomic) IBOutlet UIWindow *window;
@@ -19,4 +25,8 @@
 
 @property (strong, nonatomic) NSString* username;
 @property (strong, nonatomic) NSString* password;
+@property (strong, nonatomic) SUsage* usage;
+
+- (void)receiveUsage:(NSNotification*) notif;
+- (void)refresh_usage;
 @end

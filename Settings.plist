@@ -2,9 +2,11 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>username</key>
-	<string>john.doe</string>
-	<key>password</key>
-	<string>insecure</string>
+	<key>Root</key>
+	<dict/>
+	<key>Password</key>
+	<string></string>
+	<key>Username</key>
+	<string></string>
 </dict>
 </plist>

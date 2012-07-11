@@ -9,22 +9,19 @@
 #import "SSettingsViewController.h"
 #import "SEditableCell.h"
 #import "SPasswordCell.h"
+#import "SAppDelegate.h"
 
 @interface SSettingsViewController ()
 
 @end
 
 @implementation SSettingsViewController
-//@synthesize ui_settings_view = _ui_settings_view;
 @synthesize ui_username_cell = _ui_username_cell;
 @synthesize ui_password_cell = _ui_password_cell;
 
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  // Do any additional setup after loading the view from its nib.
-  
-  //  [self.ui_settings_view.style = 
 }
 
 - (void)viewDidUnload
@@ -56,24 +53,10 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  
-  /*
-   UITableViewCell* cell;
-   cell = [self.ui_settings_view dequeueReusableCellWithIdentifier:@"myCell"];
-   if (cell == nil) {
-   cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"myCell"];
-   }
-   assert(cell != nil);
-   
-   //  cell.textLabel.font = [UIFont systemFontOfSize:17.0f];
-   //  cell.textLabel.textAlignment = UITextAlignmentCenter;
-   //  cell.selectionStyle = UITableViewCellSelectionStyleGray; // UITableViewCellSelectionStyleNone;
-   cell.textLabel.text = @"Username"; // [docsWithExtension(LOG_FILE_EXTENSION) objectAtIndex:indexPath.row];
-   cell.detailTextLabel.text = @"foobar";
-   */
-  
+
 	static NSString *username_cell_id = @"SEditableCell";
 	static NSString *password_cell_id = @"SPasswordCell";
+  SAppDelegate* app_del = (SAppDelegate*)[[UIApplication sharedApplication] delegate];
   
   if (indexPath.row == 0) {
     SEditableCell *cell = 
@@ -84,7 +67,7 @@
       cell = self.ui_username_cell;
       self.ui_username_cell = nil;
     }
-    cell.text_field.text = @"your-username";
+    cell.text_field.text = app_del.username;
     return cell;
   }
   else {
@@ -96,38 +79,23 @@
       cell = self.ui_password_cell;
       self.ui_password_cell = nil;
     }
-    cell.password_field.text = @"your-password";
+    cell.password_field.text = app_del.password;
     return cell;
   }
 }
 
-- (void)tableView:(UITableView *)tv commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-  
-  // If row is deleted, remove it from the list.
-  if (editingStyle == UITableViewCellEditingStyleDelete) {
-    // NSString* removePath = documentPath([self logNameByIndex:indexPath.row]);
-    
-    // [self.logsTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] 
-    //withRowAnimation:UITableViewRowAnimationFade];
-  }
-}
-
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-  NSLog(@"textfieldshouldreturn!"); 
   [textField resignFirstResponder];
   return NO;
 }
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
-  NSLog(@"textfield should end editing");
-  
-  NSLog(@"tag %d", textField.tag);
-  
-  if (textField.tag == 0) {
- //   NSLog(@"username");
+  SAppDelegate* app_del = (SAppDelegate*)[[UIApplication sharedApplication] delegate];
+  if (textField.tag == 1) {
+    app_del.username = [textField text];
   }
-  else if (textField.tag == 1) {
-   // NSLog(@"password");
+  else if (textField.tag == 2) {
+    app_del.password = [textField text];
   }
   return YES;
 }

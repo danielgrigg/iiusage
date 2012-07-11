@@ -28,6 +28,8 @@
 		65E6B7D215A566F800BEB0B1 /* SPasswordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E6B7D115A566F800BEB0B1 /* SPasswordCell.m */; };
 		65E6B7D415A5679800BEB0B1 /* SPasswordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65E6B7D315A5679800BEB0B1 /* SPasswordCell.xib */; };
 		65E6B7D615A5723A00BEB0B1 /* Settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 65E6B7D515A5723A00BEB0B1 /* Settings.plist */; };
+		65E6B7DD15A6B86800BEB0B1 /* SUsageParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E6B7DC15A6B86800BEB0B1 /* SUsageParser.m */; };
+		65E6B7E115A7DD9800BEB0B1 /* SUsage.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E6B7E015A7DD9800BEB0B1 /* SUsage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +73,10 @@
 		65E6B7D115A566F800BEB0B1 /* SPasswordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPasswordCell.m; sourceTree = "<group>"; };
 		65E6B7D315A5679800BEB0B1 /* SPasswordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPasswordCell.xib; sourceTree = "<group>"; };
 		65E6B7D515A5723A00BEB0B1 /* Settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Settings.plist; sourceTree = "<group>"; };
+		65E6B7DB15A6B86800BEB0B1 /* SUsageParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUsageParser.h; sourceTree = "<group>"; };
+		65E6B7DC15A6B86800BEB0B1 /* SUsageParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUsageParser.m; sourceTree = "<group>"; };
+		65E6B7DF15A7DD9800BEB0B1 /* SUsage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUsage.h; sourceTree = "<group>"; };
+		65E6B7E015A7DD9800BEB0B1 /* SUsage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUsage.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +148,10 @@
 				65E6B7C815A558FA00BEB0B1 /* SEditableCell.m */,
 				65E6B7D015A566F800BEB0B1 /* SPasswordCell.h */,
 				65E6B7D115A566F800BEB0B1 /* SPasswordCell.m */,
+				65E6B7DB15A6B86800BEB0B1 /* SUsageParser.h */,
+				65E6B7DC15A6B86800BEB0B1 /* SUsageParser.m */,
+				65E6B7DF15A7DD9800BEB0B1 /* SUsage.h */,
+				65E6B7E015A7DD9800BEB0B1 /* SUsage.m */,
 			);
 			path = iiusage;
 			sourceTree = "<group>";
@@ -308,6 +318,8 @@
 				65E6B7C515A548E200BEB0B1 /* SSettingsViewController.m in Sources */,
 				65E6B7C915A558FA00BEB0B1 /* SEditableCell.m in Sources */,
 				65E6B7D215A566F800BEB0B1 /* SPasswordCell.m in Sources */,
+				65E6B7DD15A6B86800BEB0B1 /* SUsageParser.m in Sources */,
+				65E6B7E115A7DD9800BEB0B1 /* SUsage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -471,6 +483,7 @@
 				65E6B79A15A52B9400BEB0B1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		65E6B79B15A52B9400BEB0B1 /* Build configuration list for PBXNativeTarget "iiusageTests" */ = {
 			isa = XCConfigurationList;
@@ -479,6 +492,7 @@
 				65E6B79D15A52B9400BEB0B1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

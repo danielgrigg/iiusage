@@ -8,22 +8,130 @@
 
 #import "SAppDelegate.h"
 #import "RootViewController.h"
+#import "SUsageParser.h"
+#import "SUsage.h"
+
+@interface SAppDelegate ()
+@property (nonatomic, strong) NSURLConnection *toolbox_connection;  
+@property (nonatomic, strong) NSMutableData *usage_data;  
+@property (nonatomic, strong) NSOperationQueue *parse_queue;
+
+- (void)handleError:(NSError *)error;
+- (BOOL)settings_valid;
+- (NSDictionary*)load_plist_map:(NSString*)name;
+- (void)save_plist_map:(NSString*)name
+                      with:(NSDictionary*)root;
+
+@end
 
 @implementation SAppDelegate
 
 @synthesize window = _window;
 @synthesize root_view_controller = _root_view_controller;
 @synthesize navigation_controller = _navigation_controller;
-@synthesize username = _username;
-@synthesize password = _password;
+@synthesize username, password, toolbox_connection, usage_data, parse_queue;
+@synthesize usage;
+
+- (NSDictionary*)load_plist_map:(NSString*)name
+{
+  NSString *errorDesc = nil;
+  NSPropertyListFormat format;
+  NSString *plistPath;
+  NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                            NSUserDomainMask, YES) objectAtIndex:0];
+  plistPath = [rootPath stringByAppendingPathComponent:
+               [NSString stringWithFormat:@"%@.plist", name]];
+  if (![[NSFileManager defaultManager] fileExistsAtPath:plistPath]) {
+    plistPath = [[NSBundle mainBundle] pathForResource:name ofType:@"plist"];
+  }
+  NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:plistPath];
+  NSDictionary *root = (NSDictionary *)[NSPropertyListSerialization
+                                        propertyListFromData:plistXML
+                                        mutabilityOption:NSPropertyListMutableContainersAndLeaves
+                                        format:&format
+                                        errorDescription:&errorDesc];
+  if (!root) {
+    NSLog(@"Error reading plist: %@, format: %d", errorDesc, format);
+  }
+  return root;
+}
+
+- (void)save_plist_map:(NSString*)name
+                    with:(NSDictionary *)root
+{
+  NSString *error;
+  NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+  NSString *plistPath = [rootPath stringByAppendingPathComponent:
+                         [NSString stringWithFormat:@"%@.plist", name]];
+  
+  NSData *plistData = [NSPropertyListSerialization dataFromPropertyList:root
+                                                                 format:NSPropertyListXMLFormat_v1_0
+                                                       errorDescription:&error];
+  if(plistData) 
+  {
+    [plistData writeToFile:plistPath atomically:YES];
+  }
+  else {
+    NSLog(@"error saving plist: %@", error);
+  }
+}
+
+- (BOOL) settings_valid 
+{
+  return username != nil && password != nil;
+}
+
+- (void)receiveUsage:(NSNotification*) notif {
+  assert([NSThread isMainThread]);
+  usage = [[notif userInfo] valueForKey:NOTIF_USAGE];
+  [self.root_view_controller.ui_usage reloadData];
+}
+
+- (void)refresh_usage
+{
+  if ([self settings_valid] != YES) return;
+  
+  NSString *url_str =
+  [NSString stringWithFormat:@"https://toolbox.iinet.net.au/cgi-bin/new/volume_usage_xml.cgi?action=login&username=%@&password=%@",
+   username, password];
+  
+  self.toolbox_connection = 
+  [[NSURLConnection alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url_str]] 
+                                  delegate:self];
+  
+  NSAssert(self.toolbox_connection != nil, @"Failure to create URL connection.");
+  [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+  
+  self.parse_queue = [NSOperationQueue new];
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(receiveUsage:)
+                                               name:NOTIF_USAGE
+                                             object:nil];  
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-//    [self.window addSubview:self.navigation_controller.view];
+  //    [self.window addSubview:self.navigation_controller.view];
   self.window.rootViewController= self.navigation_controller;  
   [self.window makeKeyAndVisible];
+  
+  NSDictionary* settings_map = [self load_plist_map:@"Settings"];
+  
+  self.username = [settings_map valueForKey:@"Username"];
+  self.password = [settings_map valueForKey:@"Password"];
+  
+  if ([self settings_valid] != YES) 
+  {
+    [_root_view_controller show_settings:nil];
+  }
+#ifdef REFRESH_STARTUP
+  else {
+    [self refresh_usage];
 
-    return YES;
+  }  
+#endif
+  return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -52,5 +160,69 @@
 {
   // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+#pragma mark -
+#pragma mark NSURLConnection delegate methods
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+  NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+  if ((([httpResponse statusCode]/100) == 2)) { // && [[response MIMEType] isEqual:@"application/atom+xml"]) {
+    self.usage_data = [NSMutableData data];
+  } else {
+    NSDictionary *userInfo = [NSDictionary dictionaryWithObject:
+                              NSLocalizedString(@"Network Error",
+                                                @"Error message displayed when receving a connection error.")
+                                                         forKey:NSLocalizedDescriptionKey];
+    NSError *error = [NSError errorWithDomain:@"HTTP" code:[httpResponse statusCode] userInfo:userInfo];
+    [self handleError:error];
+  }
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+  [self.usage_data appendData:data];
+  return;
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;   
+  if ([error code] == kCFURLErrorNotConnectedToInternet) {
+    // if we can identify the error, we can present a more precise message to the user.
+    NSDictionary *userInfo =
+    [NSDictionary dictionaryWithObject:
+     NSLocalizedString(@"No Connection Error",
+                       @"Error message displayed when not connected to the Internet.")
+                                forKey:NSLocalizedDescriptionKey];
+    NSError *noConnectionError = [NSError errorWithDomain:NSCocoaErrorDomain
+                                                     code:kCFURLErrorNotConnectedToInternet
+                                                 userInfo:userInfo];
+    [self handleError:noConnectionError];
+  } else {
+    [self handleError:error];
+  }
+  self.toolbox_connection = nil;
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+  self.toolbox_connection = nil;
+  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;   
+  
+  [self.parse_queue addOperation:[[SUsageParser alloc] initWithData:self.usage_data]];  
+  self.usage_data = nil;
+}
+
+- (void)handleError:(NSError *)error {
+  NSString *errorMessage = [error localizedDescription];
+  UIAlertView *alertView =
+  [[UIAlertView alloc] initWithTitle:
+   NSLocalizedString(@"Unable to connect",
+                     @"Title for alert displayed when download or parse error occurs.")
+                             message:errorMessage
+                            delegate:nil
+                   cancelButtonTitle:@"OK"
+                   otherButtonTitles:nil];
+  [alertView show];
+}
+
+
 
 @end
