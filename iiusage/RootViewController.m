@@ -11,7 +11,6 @@
 #import "SAppDelegate.h"
 #import "SUsage.h"
 #import "SEditableCell.h"
-#import "SPasswordCell.h"
 
 @interface RootViewController ()
 - (SAppDelegate*) app_delegate;
@@ -19,8 +18,7 @@
 
 @implementation RootViewController
 
-@synthesize ui_settings = _ui_settings;
-@synthesize ui_usage = _ui_usage;
+@synthesize ui_settings, ui_usage, ui_refresh;
 
 - (SAppDelegate*) app_delegate
 {

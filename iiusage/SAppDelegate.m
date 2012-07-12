@@ -21,16 +21,14 @@
 - (NSDictionary*)load_plist_map:(NSString*)name;
 - (void)save_plist_map:(NSString*)name
                       with:(NSDictionary*)root;
+- (void)persist_settings;
 
 @end
 
 @implementation SAppDelegate
 
-@synthesize window = _window;
-@synthesize root_view_controller = _root_view_controller;
-@synthesize navigation_controller = _navigation_controller;
-@synthesize username, password, toolbox_connection, usage_data, parse_queue;
-@synthesize usage;
+@synthesize window, root_view_controller, navigation_controller, usage,
+  username, password, toolbox_connection, usage_data, parse_queue;
 
 - (NSDictionary*)load_plist_map:(NSString*)name
 {
@@ -78,7 +76,14 @@
 
 - (BOOL) settings_valid 
 {
-  return username != nil && password != nil;
+  return username != nil && username.length > 0 && 
+  password != nil && password.length > 0;
+}
+
+- (void) persist_settings
+{
+  NSDictionary* root = [[NSDictionary alloc] initWithObjectsAndKeys:username, @"Username", password, @"Password", nil];
+  [self save_plist_map:@"Settings" with:root];
 }
 
 - (void)receiveUsage:(NSNotification*) notif {
@@ -101,6 +106,7 @@
   
   NSAssert(self.toolbox_connection != nil, @"Failure to create URL connection.");
   [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+  self.root_view_controller.ui_refresh.enabled = NO;
   
   self.parse_queue = [NSOperationQueue new];
   
@@ -123,10 +129,10 @@
   
   if ([self settings_valid] != YES) 
   {
-    [_root_view_controller show_settings:nil];
+    [root_view_controller show_settings:nil];
   }
   else {
-    [self refresh_usage];
+  //  [self refresh_usage];
   }  
   return YES;
 }
@@ -159,6 +165,21 @@
 }
 
 #pragma mark -
+#pragma mark UINavigationController delegate methods
+
+- (void)navigationController:(UINavigationController *)navigationController 
+      willShowViewController:(UIViewController *)viewController 
+                    animated:(BOOL)animated 
+{
+  NSLog(@"will_show_view_controller");
+  if (viewController == self.root_view_controller && 
+      [self settings_valid])
+  {
+    [self persist_settings];
+  }
+}
+
+#pragma mark -
 #pragma mark NSURLConnection delegate methods
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
@@ -182,6 +203,7 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
   [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;   
+  self.root_view_controller.ui_refresh.enabled = YES;
   if ([error code] == kCFURLErrorNotConnectedToInternet) {
     // if we can identify the error, we can present a more precise message to the user.
     NSDictionary *userInfo =
@@ -202,6 +224,7 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
   self.toolbox_connection = nil;
   [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;   
+  self.root_view_controller.ui_refresh.enabled = YES;
   
   [self.parse_queue addOperation:[[SUsageParser alloc] initWithData:self.usage_data]];  
   self.usage_data = nil;

@@ -8,7 +8,6 @@
 
 #import "SSettingsViewController.h"
 #import "SEditableCell.h"
-#import "SPasswordCell.h"
 #import "SAppDelegate.h"
 
 @interface SSettingsViewController ()
@@ -16,8 +15,7 @@
 @end
 
 @implementation SSettingsViewController
-@synthesize ui_username_cell = _ui_username_cell;
-@synthesize ui_password_cell = _ui_password_cell;
+@synthesize ui_username_cell, ui_password_cell;
 
 - (void)viewDidLoad
 {
@@ -43,7 +41,7 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-  return @"Login Details";
+  return @"Account";
 }
 
 - (NSInteger)tableView:(UITableView *)tv numberOfRowsInSection:(NSInteger)section {
@@ -54,35 +52,48 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-	static NSString *username_cell_id = @"SEditableCell";
-	static NSString *password_cell_id = @"SPasswordCell";
+	static NSString *CELL_USERNAME = @"cell_username";
+	static NSString *CELL_PASSWORD = @"cell_password";
   SAppDelegate* app_del = (SAppDelegate*)[[UIApplication sharedApplication] delegate];
   
   if (indexPath.row == 0) {
-    SEditableCell *cell = 
-    (SEditableCell *)[tv dequeueReusableCellWithIdentifier:username_cell_id];
+    SEditableCell *cell = (SEditableCell*)[tv dequeueReusableCellWithIdentifier:CELL_USERNAME];
     
     if (cell == nil) {		
-      [[NSBundle mainBundle] loadNibNamed:@"SEditableCell" owner:self options:nil];
+      [[NSBundle mainBundle] loadNibNamed:@"UsernameCell" owner:self options:nil];
       cell = self.ui_username_cell;
       self.ui_username_cell = nil;
     }
-    cell.text_field.text = app_del.username;
+
+
+    cell.label.text = @"User Name";
+    cell.text_field.placeholder = @"name";
+    if (app_del.username.length > 0) cell.text_field.text = app_del.username;
+
     return cell;
   }
-  else {
-    SPasswordCell *cell = 
-    (SPasswordCell *)[tv dequeueReusableCellWithIdentifier:password_cell_id];
+  else// if (indexPath.row == 1) 
+  {
+    SEditableCell *cell = 
+    (SEditableCell *)[tv dequeueReusableCellWithIdentifier:CELL_PASSWORD];
     
     if (cell == nil) {		
-      [[NSBundle mainBundle] loadNibNamed:@"SPasswordCell" owner:self options:nil];
+      [[NSBundle mainBundle] loadNibNamed:@"PasswordCell" owner:self options:nil];
       cell = self.ui_password_cell;
       self.ui_password_cell = nil;
     }
-    cell.password_field.text = app_del.password;
+
+    cell.label.text = @"Password";
+    if (app_del.password.length > 0) cell.text_field.text = app_del.password;
+    cell.text_field.placeholder = @"Required";
     return cell;
   }
+
 }
+
+//- (BOOL) textFieldShouldBeginEditing:(UITextField *)textField {
+//  return [self isEditing];
+//}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
   [textField resignFirstResponder];
@@ -99,6 +110,5 @@
   }
   return YES;
 }
-
 
 @end

@@ -12,11 +12,9 @@
 @class SPasswordCell;
 
 @interface SSettingsViewController : UITableViewController <UITextFieldDelegate> {
-@private
-}
-//@property (nonatomic, retain) IBOutlet UITableView* ui_settings_view;
 
-@property (nonatomic, assign) IBOutlet SEditableCell *ui_username_cell;
-@property (nonatomic, assign) IBOutlet SPasswordCell *ui_password_cell;
+}
+@property (nonatomic, assign) IBOutlet SEditableCell* ui_username_cell;
+@property (nonatomic, assign) IBOutlet SEditableCell* ui_password_cell;
 
 @end

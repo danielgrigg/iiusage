@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface SEditableCell : UITableViewCell {
-   UITextField *text_field;
+
 }
 
 @property (strong, nonatomic) IBOutlet UITextField *text_field;
+@property (strong, nonatomic) IBOutlet UILabel *label;
 
 @end

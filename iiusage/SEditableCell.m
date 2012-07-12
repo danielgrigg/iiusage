@@ -10,28 +10,13 @@
 
 @implementation SEditableCell
 
-@synthesize text_field;
+@synthesize text_field, label;
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {
-  // The user can only edit the text field when in editing mode.
+ 
   [super setEditing:editing animated:animated];
-  text_field.enabled = editing;
+//  text_field.enabled = editing;
 }
 
 @end

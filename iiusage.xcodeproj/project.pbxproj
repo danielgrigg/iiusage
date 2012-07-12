@@ -24,12 +24,11 @@
 		65E6B7C115A5457700BEB0B1 /* gearb40.png in Resources */ = {isa = PBXBuildFile; fileRef = 65E6B7C015A5457700BEB0B1 /* gearb40.png */; };
 		65E6B7C515A548E200BEB0B1 /* SSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E6B7C315A548E200BEB0B1 /* SSettingsViewController.m */; };
 		65E6B7C915A558FA00BEB0B1 /* SEditableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E6B7C815A558FA00BEB0B1 /* SEditableCell.m */; };
-		65E6B7CB15A55A7D00BEB0B1 /* SEditableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65E6B7CA15A55A7C00BEB0B1 /* SEditableCell.xib */; };
-		65E6B7D215A566F800BEB0B1 /* SPasswordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E6B7D115A566F800BEB0B1 /* SPasswordCell.m */; };
-		65E6B7D415A5679800BEB0B1 /* SPasswordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65E6B7D315A5679800BEB0B1 /* SPasswordCell.xib */; };
 		65E6B7D615A5723A00BEB0B1 /* Settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 65E6B7D515A5723A00BEB0B1 /* Settings.plist */; };
 		65E6B7DD15A6B86800BEB0B1 /* SUsageParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E6B7DC15A6B86800BEB0B1 /* SUsageParser.m */; };
 		65E6B7E115A7DD9800BEB0B1 /* SUsage.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E6B7E015A7DD9800BEB0B1 /* SUsage.m */; };
+		65F92CC715AE8457004404C8 /* UsernameCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65F92CC615AE8457004404C8 /* UsernameCell.xib */; };
+		65F92CCB15AE85CC004404C8 /* PasswordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65F92CCA15AE85CC004404C8 /* PasswordCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,15 +67,13 @@
 		65E6B7C315A548E200BEB0B1 /* SSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSettingsViewController.m; sourceTree = "<group>"; };
 		65E6B7C715A558F900BEB0B1 /* SEditableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEditableCell.h; sourceTree = "<group>"; };
 		65E6B7C815A558FA00BEB0B1 /* SEditableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEditableCell.m; sourceTree = "<group>"; };
-		65E6B7CA15A55A7C00BEB0B1 /* SEditableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SEditableCell.xib; sourceTree = "<group>"; };
-		65E6B7D015A566F800BEB0B1 /* SPasswordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPasswordCell.h; sourceTree = "<group>"; };
-		65E6B7D115A566F800BEB0B1 /* SPasswordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPasswordCell.m; sourceTree = "<group>"; };
-		65E6B7D315A5679800BEB0B1 /* SPasswordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPasswordCell.xib; sourceTree = "<group>"; };
 		65E6B7D515A5723A00BEB0B1 /* Settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Settings.plist; sourceTree = "<group>"; };
 		65E6B7DB15A6B86800BEB0B1 /* SUsageParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUsageParser.h; sourceTree = "<group>"; };
 		65E6B7DC15A6B86800BEB0B1 /* SUsageParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUsageParser.m; sourceTree = "<group>"; };
 		65E6B7DF15A7DD9800BEB0B1 /* SUsage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUsage.h; sourceTree = "<group>"; };
 		65E6B7E015A7DD9800BEB0B1 /* SUsage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUsage.m; sourceTree = "<group>"; };
+		65F92CC615AE8457004404C8 /* UsernameCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UsernameCell.xib; sourceTree = "<group>"; };
+		65F92CCA15AE85CC004404C8 /* PasswordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasswordCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,8 +143,6 @@
 				65E6B77615A52B9400BEB0B1 /* Supporting Files */,
 				65E6B7C715A558F900BEB0B1 /* SEditableCell.h */,
 				65E6B7C815A558FA00BEB0B1 /* SEditableCell.m */,
-				65E6B7D015A566F800BEB0B1 /* SPasswordCell.h */,
-				65E6B7D115A566F800BEB0B1 /* SPasswordCell.m */,
 				65E6B7DB15A6B86800BEB0B1 /* SUsageParser.h */,
 				65E6B7DC15A6B86800BEB0B1 /* SUsageParser.m */,
 				65E6B7DF15A7DD9800BEB0B1 /* SUsage.h */,
@@ -189,12 +184,12 @@
 		65E6B7A715A5308A00BEB0B1 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				65F92CC615AE8457004404C8 /* UsernameCell.xib */,
 				65E6B7C015A5457700BEB0B1 /* gearb40.png */,
 				65E6B7B515A532D700BEB0B1 /* RootViewController.xib */,
 				65E6B7A815A5323800BEB0B1 /* MainWindow.xib */,
-				65E6B7CA15A55A7C00BEB0B1 /* SEditableCell.xib */,
-				65E6B7D315A5679800BEB0B1 /* SPasswordCell.xib */,
 				65E6B7D515A5723A00BEB0B1 /* Settings.plist */,
+				65F92CCA15AE85CC004404C8 /* PasswordCell.xib */,
 			);
 			name = resources;
 			sourceTree = "<group>";
@@ -275,9 +270,9 @@
 				65E6B7A915A5323800BEB0B1 /* MainWindow.xib in Resources */,
 				65E6B7B715A532D700BEB0B1 /* RootViewController.xib in Resources */,
 				65E6B7C115A5457700BEB0B1 /* gearb40.png in Resources */,
-				65E6B7CB15A55A7D00BEB0B1 /* SEditableCell.xib in Resources */,
-				65E6B7D415A5679800BEB0B1 /* SPasswordCell.xib in Resources */,
 				65E6B7D615A5723A00BEB0B1 /* Settings.plist in Resources */,
+				65F92CC715AE8457004404C8 /* UsernameCell.xib in Resources */,
+				65F92CCB15AE85CC004404C8 /* PasswordCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,7 +312,6 @@
 				65E6B7B615A532D700BEB0B1 /* RootViewController.m in Sources */,
 				65E6B7C515A548E200BEB0B1 /* SSettingsViewController.m in Sources */,
 				65E6B7C915A558FA00BEB0B1 /* SEditableCell.m in Sources */,
-				65E6B7D215A566F800BEB0B1 /* SPasswordCell.m in Sources */,
 				65E6B7DD15A6B86800BEB0B1 /* SUsageParser.m in Sources */,
 				65E6B7E115A7DD9800BEB0B1 /* SUsage.m in Sources */,
 			);

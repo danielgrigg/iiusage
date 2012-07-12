@@ -14,4 +14,5 @@
 - (IBAction)refresh_usage:(id)sender;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem* ui_settings;
 @property (nonatomic, retain) IBOutlet UITableView* ui_usage;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem* ui_refresh;
 @end
