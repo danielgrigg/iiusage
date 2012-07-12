@@ -132,7 +132,7 @@
     [root_view_controller show_settings:nil];
   }
   else {
-  //  [self refresh_usage];
+    [self refresh_usage];
   }  
   return YES;
 }
